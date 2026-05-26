@@ -1178,4 +1178,4 @@ int main(void) {
 
 > ✍️ **ត្រូវចាំ:** "Programs must be written for people to read, and only incidentally for machines to execute." — Harold Abelson
 
-> 🇰🇭 **ជួបជ្រួប Code ជារៀងរាល់ថ្ងៃ — ជោគជ័យនឹងមក!**
+

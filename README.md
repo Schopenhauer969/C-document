@@ -8,7 +8,7 @@
 
 1. [ការណែនាំអំពីភាសា C](#1-ការណែនាំអំពីភាសា-c)
 2. [ការដំឡើង Environment](#2-ការដំឡើង-environment)
-3. [Hello World](#3-โปรแกรมដំបូង--hello-world)
+3. [Hello World](#3-hello-world)
 4. [ប្រភេទទិន្នន័យ (Data Types)](#4-ប្រភេទទិន្នន័យ-data-types)
 5. [អថេរ (Variables) និង ថេរ (Constants)](#5-អថេរ-variables-និង-ថេរ-constants)
 6. [តម្លៃ Input / Output](#6-តម្លៃ-input--output)

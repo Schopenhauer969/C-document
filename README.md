@@ -1,284 +1,202 @@
-# 📘 គម្រោង C Programming — ចាប់ពីដំបូងដល់កម្រិតខ្ពស់
-> **ភាសា:** ខ្មែរ 🇰🇭 | **កម្រិត:** Beginner → Advanced  
-> **គោលបំណង:** សៀវភៅណែនាំ C Programming ដ៏គ្រប់ជ្រុងជ្រោយ សម្រាប់អ្នកចាប់ផ្តើម រហូតដល់អ្នកជំនាញ
+# ⚙️ C — Complete Guide (Beginner to Advanced)
+
+> A complete, hands-on guide to C — from your first program to pointers, memory management, and multi-file projects used in real production code.
 
 ---
 
-## 📋 តារាងមាតិកា (Table of Contents)
+## 📚 Table of Contents
 
-1. [ការណែនាំអំពីភាសា C](#1-ការណែនាំអំពីភាសា-c)
-2. [ការដំឡើង Environment](#2-ការដំឡើង-environment)
-3. [Hello World](#3-hello-world)
-4. [ប្រភេទទិន្នន័យ (Data Types)](#4-ប្រភេទទិន្នន័យ-data-types)
-5. [អថេរ (Variables) និង ថេរ (Constants)](#5-អថេរ-variables-និង-ថេរ-constants)
-6. [តម្លៃ Input / Output](#6-តម្លៃ-input--output)
-7. [ប្រមាណវិធី (Operators)](#7-ប្រមាណវិធី-operators)
-8. [លក្ខខណ្ឌ (Conditionals)](#8-លក្ខខណ្ឌ-conditionals)
-9. [រង្វិលជុំ (Loops)](#9-រង្វិលជុំ-loops)
-10. [អនុគមន៍ (Functions)](#10-អនុគមន៍-functions)
-11. [អារ៉េ (Arrays)](#11-អារ៉េ-arrays)
-12. [String](#12-string)
-13. [Pointer](#13-pointer)
-14. [Structure និង Union](#14-structure-និង-union)
-15. [File I/O](#15-file-io)
-16. [Dynamic Memory Allocation](#16-dynamic-memory-allocation)
-17. [Preprocessor](#17-preprocessor)
-18. [Error Handling](#18-error-handling)
-19. [Advanced Topics](#19-advanced-topics)
-20. [គន្លឹះសរសេរ Clean Code](#20-គន្លឹះសរសេរ-clean-code)
-
----
-
-## 1. ការណែនាំអំពីភាសា C
-
-### ✅ C គឺជាអ្វី?
-
-ភាសា **C** ត្រូវបានបង្កើតឡើងដោយ **Dennis Ritchie** នៅឆ្នាំ **1972** នៅ Bell Labs។  
-វាជាភាសា **low-level + high-level** ដំណាលគ្នា ហើយត្រូវបានប្រើជា base ក្នុងភាសា C++, Java, Python, និង Go។
-
-### 🔑 លក្ខណៈពិសេស
-- ⚡ **លឿន និង ប្រសិទ្ធភាពខ្ពស់** — ប្រើក្នុង OS, Embedded Systems, Game Engines
-- 🔧 **Control ទាប** — គ្រប់គ្រង Memory ដោយខ្លួនឯង
-- 📦 **Portable** — Code ដំណើរការបានលើ Platform ជាច្រើន
-- 🧱 **Foundation** — ប្រសិនបើចេះ C ច្បាស់ ការរៀនភាសាផ្សេងក្លាយជារឿងងាយ
+1. [Introduction](#1-introduction)
+2. [Prerequisites & Setup](#2-prerequisites--setup)
+3. [Your First C Program](#3-your-first-c-program)
+4. [Variables & Data Types](#4-variables--data-types)
+5. [Operators](#5-operators)
+6. [Control Flow](#6-control-flow)
+7. [Arrays](#7-arrays)
+8. [Strings](#8-strings)
+9. [Functions](#9-functions)
+10. [Pointers](#10-pointers)
+11. [Structs & Unions](#11-structs--unions)
+12. [Dynamic Memory Allocation](#12-dynamic-memory-allocation)
+13. [File I/O](#13-file-io)
+14. [Preprocessor Directives](#14-preprocessor-directives)
+15. [Multi-File Programs & Header Files](#15-multi-file-programs--header-files)
+16. [Command-Line Arguments](#16-command-line-arguments)
+17. [Common Pitfalls & Debugging](#17-common-pitfalls--debugging)
+18. [Best Practices](#18-best-practices)
+19. [Full Example Project](#19-full-example-project)
+20. [Resources](#20-resources)
 
 ---
 
-## 2. ការដំឡើង Environment
+## 1. Introduction
 
-### Windows
-```
-1. ទាញ MinGW: https://www.mingw-w64.org/
-2. ដំឡើង VS Code: https://code.visualstudio.com/
-3. ដំឡើង Extension "C/C++" ក្នុង VS Code
-```
+C is a low-level, compiled, general-purpose programming language created in 1972. It gives direct control over memory and hardware, making it the foundation for operating systems (Linux, Windows kernels), embedded systems, and most other programming languages' runtimes.
 
-### Linux / macOS
+**Key facts:**
+- Compiled directly to machine code — no virtual machine or interpreter
+- Statically typed — every variable's type is fixed at compile time
+- Manual memory management (no garbage collector)
+- Extremely fast and close to the hardware
+- Current standard: **C17** (with C23 emerging)
+
+---
+
+## 2. Prerequisites & Setup
+
+- No prior coding experience required, though it helps
+- A C compiler: **GCC**, **Clang**, or **MSVC** (Windows)
+- A code editor: **VS Code**, **CLion**
+
 ```bash
-# Linux (Ubuntu/Debian)
-sudo apt update
-sudo apt install gcc build-essential
-
-# macOS
-xcode-select --install
-
-# ពិនិត្យ version
+# Verify installation (Linux/macOS, using GCC)
 gcc --version
+
+# On macOS, GCC is usually an alias for Clang
+clang --version
 ```
 
-### ការ Compile និង Run
+**Compiling and running a C program:**
+
 ```bash
-# Compile
+# Compile hello.c into an executable named "hello"
 gcc hello.c -o hello
 
-# Run
-./hello
+# Run the compiled program
+./hello        # Linux/macOS
+hello.exe      # Windows
 ```
 
 ---
 
-## 3. Hello World
+## 3. Your First C Program
 
 ```c
-/*
- * ឯកសារ : hello.c
- * គោលបំណង : បង្ហាញ "Hello, World!" លើ Terminal
- */
-
-#include <stdio.h>   // Library សម្រាប់ Input/Output
+// hello.c
+#include <stdio.h>
 
 int main(void) {
     printf("Hello, World!\n");
-    return 0;         // 0 = Program ដំណើរការជោគជ័យ
+    return 0;
 }
 ```
 
-**ការបកស្រាយ:**
-| ផ្នែក | មានន័យ |
+**Breaking it down:**
+
+| Part | Meaning |
 |---|---|
-| `#include <stdio.h>` | ដក់ចូល Library ដែល​ផ្ដល់ `printf`, `scanf` |
-| `int main(void)` | ចំណុចចាប់ផ្ដើម Program |
-| `printf(...)` | Print លើ Screen |
-| `return 0` | ប្រាប់ OS ថា Program ជោគជ័យ |
+| `#include <stdio.h>` | Includes the Standard Input/Output library (needed for `printf`) |
+| `int main(void)` | Entry point — every C program starts execution here |
+| `printf(...)` | Prints formatted text to the console |
+| `return 0;` | Signals successful program completion to the operating system |
+
+```bash
+gcc hello.c -o hello
+./hello
+# Output: Hello, World!
+```
 
 ---
 
-## 4. ប្រភេទទិន្នន័យ (Data Types)
+## 4. Variables & Data Types
 
 ```c
 #include <stdio.h>
 
 int main(void) {
+    // Basic data types
+    int age = 25;                // Whole numbers (typically 4 bytes)
+    float price = 19.99f;        // Decimal numbers (4 bytes, note the f suffix)
+    double preciseValue = 3.14159265359; // Decimal numbers, more precision (8 bytes)
+    char grade = 'A';             // A single character (1 byte)
+    char isActiveFlag = 1;        // C has no true bool in older standards (0 = false, nonzero = true)
 
-    /* ========== Integer Types ========== */
-    int          age    = 25;           // -2,147,483,648 ដល់ 2,147,483,647
-    short        s      = 100;          // -32,768 ដល់ 32,767
-    long         pop    = 1000000L;     // ចំនួនធំ
-    long long    big    = 9000000000LL; // ចំនួនធំណាស់
-    unsigned int u_age  = 25u;          // 0 ដល់ 4,294,967,295 (គ្មានអវិជ្ជមាន)
+    // Fixed-width integers (recommended for portability — from <stdint.h>)
+    // #include <stdint.h>
+    // int32_t exact32 = 100000;
+    // uint8_t smallUnsigned = 255;
 
-    /* ========== Floating Point Types ========== */
-    float        price  = 9.99f;        // 6-7 decimal digits
-    double       pi     = 3.14159265;   // 15-16 decimal digits
-    long double  ld     = 3.141592653L; // កាន់តែច្រើន digits
+    // Unsigned types (only non-negative values, doubles the positive range)
+    unsigned int count = 100;
 
-    /* ========== Character Type ========== */
-    char         grade  = 'A';          // តួអក្សរ 1 តួ (1 byte)
+    // Constants
+    const double PI = 3.14159;
 
-    /* ========== Boolean (ត្រូវ #include <stdbool.h>) ========== */
-    _Bool        is_ok  = 1;            // 1 = true, 0 = false
+    // Printing values with format specifiers
+    printf("Age: %d\n", age);           // %d for int
+    printf("Price: %.2f\n", price);      // %f for float/double, .2 = 2 decimal places
+    printf("Grade: %c\n", grade);        // %c for char
+    printf("Pi: %lf\n", preciseValue);   // %lf for double
 
-    printf("Age    : %d\n",   age);
-    printf("Price  : %.2f\n", price);
-    printf("Pi     : %.8f\n", pi);
-    printf("Grade  : %c\n",   grade);
+    // sizeof — check how many bytes a type uses
+    printf("Size of int: %zu bytes\n", sizeof(int));
+    printf("Size of double: %zu bytes\n", sizeof(double));
 
     return 0;
 }
 ```
 
-### ទំហំ (Size) នៃ Data Types
-```c
-#include <stdio.h>
-
-int main(void) {
-    printf("int       : %zu bytes\n", sizeof(int));
-    printf("long      : %zu bytes\n", sizeof(long));
-    printf("float     : %zu bytes\n", sizeof(float));
-    printf("double    : %zu bytes\n", sizeof(double));
-    printf("char      : %zu bytes\n", sizeof(char));
-    return 0;
-}
-```
-
----
-
-## 5. អថេរ (Variables) និង ថេរ (Constants)
+**Boolean type (C99+):**
 
 ```c
 #include <stdio.h>
-
-/* =========================================
- * CONSTANT — តម្លៃមិនអាចផ្លាស់ប្ដូរ
- * ========================================= */
-#define PI        3.14159265   // Preprocessor Constant
-#define MAX_SIZE  100
+#include <stdbool.h> // Required for true bool support
 
 int main(void) {
+    bool isActive = true;
+    bool isDone = false;
 
-    /* --- Variables (អថេរ) --- */
-    int   score     = 0;          // ប្រកាស + Assign
-    float radius;                 // ប្រកាស មុន
-    radius = 5.0f;                // Assign ក្រោយ
-
-    /* --- const keyword --- */
-    const double GRAVITY = 9.81;  // មិនអាចផ្លាស់ប្ដូរ
-
-    /* --- ការគណនា --- */
-    double area = PI * radius * radius;
-
-    printf("Radius : %.1f\n",  radius);
-    printf("Area   : %.4f\n",  area);
-    printf("Gravity: %.2f\n",  GRAVITY);
-
-    /* GRAVITY = 10.0; */  // ❌ Error! const មិនអាចផ្លាស់ប្ដូរ
-
+    printf("Is active: %d\n", isActive); // Prints 1 (C has no native bool printf format)
     return 0;
 }
 ```
 
 ---
 
-## 6. តម្លៃ Input / Output
+## 5. Operators
 
 ```c
 #include <stdio.h>
 
 int main(void) {
+    // Arithmetic
+    printf("%d\n", 10 + 5);   // 15
+    printf("%d\n", 10 - 5);   // 5
+    printf("%d\n", 10 * 5);   // 50
+    printf("%d\n", 10 / 3);   // 3 (integer division truncates!)
+    printf("%f\n", 10.0 / 3); // 3.333333
+    printf("%d\n", 10 % 3);   // 1 (modulo)
 
-    int    age;
-    float  height;
-    char   name[50];
+    // Increment/decrement
+    int count = 0;
+    count++;   // Post-increment
+    ++count;   // Pre-increment
+    printf("%d\n", count); // 2
 
-    /* --- Input --- */
-    printf("បញ្ចូលឈ្មោះ   : ");
-    scanf("%49s", name);           // %49s — ការពារ Buffer Overflow
+    // Comparison
+    printf("%d\n", 5 == 5);  // 1 (true)
+    printf("%d\n", 5 != 3);  // 1 (true)
+    printf("%d\n", 10 > 5);  // 1 (true)
 
-    printf("បញ្ចូលអាយុ   : ");
-    scanf("%d", &age);             // & = address នៃ variable
+    // Logical
+    int a = 1, b = 0;
+    printf("%d\n", a && b);  // 0 (AND)
+    printf("%d\n", a || b);  // 1 (OR)
+    printf("%d\n", !a);       // 0 (NOT)
 
-    printf("បញ្ចូលកម្ពស់ : ");
-    scanf("%f", &height);
+    // Bitwise operators
+    printf("%d\n", 5 & 3);   // 1  (AND)
+    printf("%d\n", 5 | 3);   // 7  (OR)
+    printf("%d\n", 5 ^ 3);   // 6  (XOR)
+    printf("%d\n", ~5);       // -6 (NOT)
+    printf("%d\n", 5 << 1);   // 10 (left shift = multiply by 2)
+    printf("%d\n", 5 >> 1);   // 2  (right shift = divide by 2)
 
-    /* --- Output --- */
-    printf("\n========== ព័ត៌មាន ==========\n");
-    printf("ឈ្មោះ  : %s\n",   name);
-    printf("អាយុ   : %d ឆ្នាំ\n", age);
-    printf("កម្ពស់ : %.1f ម៉ែត្រ\n", height);
-
-    return 0;
-}
-```
-
-### Format Specifiers សំខាន់ៗ
-| Specifier | ប្រភេទ | ឧទាហរណ៍ |
-|---|---|---|
-| `%d` | int | `printf("%d", 42)` |
-| `%f` | float/double | `printf("%.2f", 3.14)` |
-| `%c` | char | `printf("%c", 'A')` |
-| `%s` | string | `printf("%s", "hello")` |
-| `%ld` | long | `printf("%ld", 1000000L)` |
-| `%lld` | long long | `printf("%lld", 9e18)` |
-| `%zu` | size_t | `printf("%zu", sizeof(int))` |
-| `%p` | pointer | `printf("%p", ptr)` |
-
----
-
-## 7. ប្រមាណវិធី (Operators)
-
-```c
-#include <stdio.h>
-
-int main(void) {
-
-    int a = 10, b = 3;
-
-    /* ========== Arithmetic ========== */
-    printf("=== Arithmetic ===\n");
-    printf("%d + %d = %d\n",  a, b, a + b);   // 13
-    printf("%d - %d = %d\n",  a, b, a - b);   // 7
-    printf("%d * %d = %d\n",  a, b, a * b);   // 30
-    printf("%d / %d = %d\n",  a, b, a / b);   // 3  (Integer division)
-    printf("%d %% %d = %d\n", a, b, a % b);   // 1  (Remainder)
-
-    /* ========== Relational ========== */
-    printf("\n=== Relational ===\n");
-    printf("%d == %d : %d\n", a, b, a == b);  // 0 = false
-    printf("%d != %d : %d\n", a, b, a != b);  // 1 = true
-    printf("%d >  %d : %d\n", a, b, a >  b);  // 1 = true
-    printf("%d <= %d : %d\n", a, b, a <= b);  // 0 = false
-
-    /* ========== Logical ========== */
-    printf("\n=== Logical ===\n");
-    printf("(a>0 && b>0) : %d\n", (a > 0 && b > 0)); // AND — 1
-    printf("(a<0 || b>0) : %d\n", (a < 0 || b > 0)); // OR  — 1
-    printf("!(a == b)    : %d\n", !(a == b));         // NOT — 1
-
-    /* ========== Assignment ========== */
-    printf("\n=== Assignment ===\n");
-    int x = 5;
-    x += 3;  printf("x += 3 : %d\n", x);   // 8
-    x -= 2;  printf("x -= 2 : %d\n", x);   // 6
-    x *= 4;  printf("x *= 4 : %d\n", x);   // 24
-    x /= 6;  printf("x /= 6 : %d\n", x);   // 4
-    x %= 3;  printf("x %%= 3 : %d\n", x);  // 1
-
-    /* ========== Increment / Decrement ========== */
-    printf("\n=== Increment/Decrement ===\n");
-    int n = 5;
-    printf("n++  : %d\n", n++);  // ប្រើ n ហើយ ++ (5)
-    printf("n    : %d\n", n);    // 6
-    printf("++n  : %d\n", ++n);  // ++ ហើយ ប្រើ (7)
+    // Compound assignment
+    int x = 10;
+    x += 5;  // x = 15
+    x -= 3;  // x = 12
+    x *= 2;  // x = 24
 
     return 0;
 }
@@ -286,157 +204,66 @@ int main(void) {
 
 ---
 
-## 8. លក្ខខណ្ឌ (Conditionals)
+## 6. Control Flow
 
-### if / else if / else
 ```c
 #include <stdio.h>
 
 int main(void) {
+    int score = 85;
 
-    int score;
-    printf("បញ្ចូលពិន្ទុ (0-100): ");
-    scanf("%d", &score);
-
+    // if / else if / else
     if (score >= 90) {
-        printf("ថ្នាក់ A — ល្អប្រសើរ! 🌟\n");
+        printf("Grade: A\n");
     } else if (score >= 80) {
-        printf("ថ្នាក់ B — ល្អ\n");
-    } else if (score >= 70) {
-        printf("ថ្នាក់ C — មធ្យម\n");
-    } else if (score >= 60) {
-        printf("ថ្នាក់ D — ត្រូវការកែ\n");
+        printf("Grade: B\n");
     } else {
-        printf("ថ្នាក់ F — ធ្លាក់\n");
+        printf("Grade: C or below\n");
     }
 
-    return 0;
-}
-```
+    // Ternary operator
+    int isPassing = (score >= 60) ? 1 : 0;
+    printf("Passing: %d\n", isPassing);
 
-### switch / case
-```c
-#include <stdio.h>
-
-int main(void) {
-
-    int day;
-    printf("បញ្ចូលថ្ងៃ (1-7): ");
-    scanf("%d", &day);
-
+    // switch statement
+    int day = 3;
     switch (day) {
-        case 1:  printf("ថ្ងៃអាទិត្យ\n");   break;
-        case 2:  printf("ថ្ងៃចន្ទ\n");       break;
-        case 3:  printf("ថ្ងៃអង្គារ\n");     break;
-        case 4:  printf("ថ្ងៃពុធ\n");        break;
-        case 5:  printf("ថ្ងៃព្រហស្បត្តិ\n"); break;
-        case 6:  printf("ថ្ងៃសុក្រ\n");      break;
-        case 7:  printf("ថ្ងៃសៅរ៍\n");       break;
-        default: printf("ថ្ងៃមិនត្រឹមត្រូវ\n");
+        case 1:
+            printf("Monday\n");
+            break;
+        case 2:
+            printf("Tuesday\n");
+            break;
+        default:
+            printf("Another day\n");
+            break; // Good practice even on the last case
     }
 
-    return 0;
-}
-```
-
-### Ternary Operator
-```c
-int age = 20;
-// condition ? value_if_true : value_if_false
-const char *status = (age >= 18) ? "ពេញវ័យ" : "អនីតិជន";
-printf("%s\n", status);
-```
-
----
-
-## 9. រង្វិលជុំ (Loops)
-
-### for loop
-```c
-#include <stdio.h>
-
-int main(void) {
-
-    /* --- for loop ធម្មតា --- */
-    printf("=== for loop ===\n");
-    for (int i = 1; i <= 5; i++) {
-        printf("ជំហានទី %d\n", i);
+    // for loop
+    for (int i = 0; i < 5; i++) {
+        printf("Iteration %d\n", i);
     }
 
-    /* --- Nested for loop (តារាងគុណ) --- */
-    printf("\n=== តារាងគុណ ===\n");
-    for (int i = 1; i <= 3; i++) {
-        for (int j = 1; j <= 3; j++) {
-            printf("%2d ", i * j);
-        }
-        printf("\n");
+    // while loop
+    int n = 0;
+    while (n < 3) {
+        printf("n = %d\n", n);
+        n++;
     }
 
-    return 0;
-}
-```
-
-### while loop
-```c
-#include <stdio.h>
-
-int main(void) {
-
-    int count = 1;
-
-    printf("=== while loop ===\n");
-    while (count <= 5) {
-        printf("Count: %d\n", count);
-        count++;
-    }
-
-    return 0;
-}
-```
-
-### do-while loop
-```c
-#include <stdio.h>
-
-int main(void) {
-
-    int number;
-
-    /* do-while ដំណើរការ 1 ដងជានិច្ច មុន check condition */
+    // do-while loop (runs at least once)
+    int m = 0;
     do {
-        printf("បញ្ចូលលេខវិជ្ជមាន: ");
-        scanf("%d", &number);
+        printf("m = %d\n", m);
+        m++;
+    } while (m < 3);
 
-        if (number <= 0) {
-            printf("❌ លេខត្រូវតែធំជាង 0!\n");
-        }
-    } while (number <= 0);
-
-    printf("✅ លេខបានទទួល: %d\n", number);
-
-    return 0;
-}
-```
-
-### break និង continue
-```c
-#include <stdio.h>
-
-int main(void) {
-
-    printf("=== break ===\n");
-    for (int i = 1; i <= 10; i++) {
-        if (i == 6) break;           // ឈប់ loop ភ្លាម
-        printf("%d ", i);
+    // break and continue
+    for (int i = 0; i < 10; i++) {
+        if (i == 3) continue; // Skip this iteration
+        if (i == 6) break;    // Exit the loop entirely
+        printf("%d\n", i);
     }
-    printf("\n");  // 1 2 3 4 5
-
-    printf("=== continue ===\n");
-    for (int i = 1; i <= 10; i++) {
-        if (i % 2 == 0) continue;   // រំលង លេខគូ
-        printf("%d ", i);
-    }
-    printf("\n");  // 1 3 5 7 9
 
     return 0;
 }
@@ -444,112 +271,440 @@ int main(void) {
 
 ---
 
-## 10. អនុគមន៍ (Functions)
+## 7. Arrays
 
 ```c
 #include <stdio.h>
 
-/* =========================================
- * Function Prototypes (Declaration)
- * ========================================= */
-int    add(int a, int b);
-double circle_area(double radius);
-void   greet(const char *name);
-
-/* =========================================
- * main
- * ========================================= */
 int main(void) {
+    // Declaring and initializing arrays
+    int numbers[5] = {10, 20, 30, 40, 50};
+    int zeros[5] = {0}; // All elements initialized to 0
 
-    int result = add(10, 20);
-    printf("10 + 20 = %d\n", result);
+    // Accessing elements (zero-indexed)
+    printf("%d\n", numbers[0]); // 10
+    printf("%d\n", numbers[4]); // 50
 
-    double area = circle_area(5.0);
-    printf("ផ្ទៃដីរង្វង់ = %.4f\n", area);
+    // Modifying elements
+    numbers[0] = 100;
 
-    greet("Sophea");
+    // Getting array length (only works within the same scope where it's declared!)
+    int length = sizeof(numbers) / sizeof(numbers[0]);
+    printf("Length: %d\n", length); // 5
 
-    return 0;
-}
-
-/* =========================================
- * Function Definitions
- * ========================================= */
-
-/* បន្ថែមលេខ 2 ចំនួន */
-int add(int a, int b) {
-    return a + b;
-}
-
-/* គណនា​ ផ្ទៃដី​រង្វង់ */
-double circle_area(double radius) {
-    const double PI = 3.14159265;
-    return PI * radius * radius;
-}
-
-/* Print សួស្ដី — return void (គ្មាន return value) */
-void greet(const char *name) {
-    printf("សួស្ដី, %s! 👋\n", name);
-}
-```
-
-### Recursion (ការហៅខ្លួនឯង)
-```c
-#include <stdio.h>
-
-/* Factorial: n! = n * (n-1) * ... * 1 */
-long long factorial(int n) {
-    if (n <= 1) return 1;              // Base case
-    return n * factorial(n - 1);      // Recursive call
-}
-
-/* Fibonacci */
-int fibonacci(int n) {
-    if (n <= 0) return 0;
-    if (n == 1) return 1;
-    return fibonacci(n - 1) + fibonacci(n - 2);
-}
-
-int main(void) {
-    printf("5! = %lld\n", factorial(5));     // 120
-    printf("fib(8) = %d\n", fibonacci(8));  // 21
-    return 0;
-}
-```
-
----
-
-## 11. អារ៉េ (Arrays)
-
-```c
-#include <stdio.h>
-
-#define N 5
-
-int main(void) {
-
-    /* ========== 1D Array ========== */
-    int scores[N] = {85, 92, 78, 95, 88};
-
-    int sum = 0;
-    for (int i = 0; i < N; i++) {
-        sum += scores[i];
-        printf("scores[%d] = %d\n", i, scores[i]);
+    // Looping through an array
+    for (int i = 0; i < length; i++) {
+        printf("%d ", numbers[i]);
     }
-    printf("ពិន្ទុសរុប   : %d\n", sum);
-    printf("ពិន្ទុជាមធ្យម : %.1f\n", (double)sum / N);
+    printf("\n");
 
-    /* ========== 2D Array (Matrix) ========== */
-    printf("\n=== Matrix 3x3 ===\n");
+    // Multidimensional arrays
     int matrix[3][3] = {
         {1, 2, 3},
         {4, 5, 6},
         {7, 8, 9}
     };
+    printf("%d\n", matrix[1][2]); // 6 (row 1, column 2)
 
     for (int row = 0; row < 3; row++) {
         for (int col = 0; col < 3; col++) {
-            printf("%3d", matrix[row][col]);
+            printf("%d ", matrix[row][col]);
+        }
+        printf("\n");
+    }
+
+    // IMPORTANT: C does NOT check array bounds — accessing numbers[10] is undefined
+    // behavior (may crash, may silently corrupt memory). Always track your own bounds.
+
+    return 0;
+}
+```
+
+---
+
+## 8. Strings
+
+In C, strings are simply arrays of `char` terminated by a null byte (`'\0'`).
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main(void) {
+    // Declaring strings
+    char greeting[20] = "Hello";      // Enough space for "Hello" + null terminator
+    char name[] = "Sophea";            // Size automatically inferred
+
+    printf("%s\n", greeting); // %s for strings
+
+    // String length (excludes the null terminator)
+    printf("Length: %zu\n", strlen(name)); // 6
+
+    // Concatenation (destination buffer MUST have enough space!)
+    char fullGreeting[50] = "Hello, ";
+    strcat(fullGreeting, name);
+    strcat(fullGreeting, "!");
+    printf("%s\n", fullGreeting); // "Hello, Sophea!"
+
+    // Copying strings
+    char copy[20];
+    strcpy(copy, name);
+    printf("%s\n", copy); // "Sophea"
+
+    // Comparing strings (NEVER use == on strings — that compares pointers, not content)
+    if (strcmp(name, "Sophea") == 0) {
+        printf("Names match!\n");
+    }
+
+    // Safer, bounded versions (recommended — prevent buffer overflows)
+    char safeCopy[10];
+    strncpy(safeCopy, "Hello World", sizeof(safeCopy) - 1);
+    safeCopy[sizeof(safeCopy) - 1] = '\0'; // Always manually null-terminate with strncpy
+
+    // Formatted string building
+    char message[50];
+    snprintf(message, sizeof(message), "%s is %d years old", name, 25);
+    printf("%s\n", message); // "Sophea is 25 years old"
+
+    // Looping through a string character by character
+    for (int i = 0; name[i] != '\0'; i++) {
+        printf("%c", name[i]);
+    }
+    printf("\n");
+
+    // Reading a line of input safely
+    char input[100];
+    printf("Enter your name: ");
+    fgets(input, sizeof(input), stdin);
+    input[strcspn(input, "\n")] = '\0'; // Remove the trailing newline from fgets
+    printf("Hello, %s!\n", input);
+
+    return 0;
+}
+```
+
+**⚠️ Never use `gets()`** — it's removed from modern C standards because it can't limit input size, causing buffer overflows. Always use `fgets()` instead.
+
+---
+
+## 9. Functions
+
+```c
+#include <stdio.h>
+
+// Function declaration (prototype) — tells the compiler the signature ahead of time
+int add(int a, int b);
+void printGreeting(const char *name);
+int factorial(int n);
+
+int main(void) {
+    printf("%d\n", add(3, 4));       // 7
+    printGreeting("Sophea");
+    printf("%d\n", factorial(5));     // 120
+    return 0;
+}
+
+// Function definitions
+int add(int a, int b) {
+    return a + b;
+}
+
+// void function — performs an action, returns nothing
+void printGreeting(const char *name) {
+    // "const" means this function promises not to modify the string
+    printf("Hello, %s!\n", name);
+}
+
+// Recursive function
+int factorial(int n) {
+    if (n <= 1) return 1;          // Base case
+    return n * factorial(n - 1);   // Recursive case
+}
+```
+
+**Passing arrays to functions (arrays decay to pointers):**
+
+```c
+#include <stdio.h>
+
+// The array parameter is really a pointer — the size is lost, so pass it separately
+void printArray(int arr[], int size) {
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int sumArray(int arr[], int size) {
+    int total = 0;
+    for (int i = 0; i < size; i++) {
+        total += arr[i];
+    }
+    return total;
+}
+
+int main(void) {
+    int numbers[] = {1, 2, 3, 4, 5};
+    int size = sizeof(numbers) / sizeof(numbers[0]);
+
+    printArray(numbers, size);
+    printf("Sum: %d\n", sumArray(numbers, size)); // 15
+
+    return 0;
+}
+```
+
+---
+
+## 10. Pointers
+
+A pointer is a variable that stores the **memory address** of another variable. Pointers are the defining feature of C.
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int age = 25;
+    int *agePtr = &age; // &age gets the ADDRESS of age; agePtr now points to it
+
+    printf("Value of age: %d\n", age);       // 25
+    printf("Address of age: %p\n", (void *)&age); // Some memory address
+    printf("Value of agePtr: %p\n", (void *)agePtr); // Same address as above
+    printf("Value pointed to by agePtr: %d\n", *agePtr); // 25 — dereferencing with *
+
+    // Modifying a value through its pointer
+    *agePtr = 26;
+    printf("New value of age: %d\n", age); // 26 — the original variable changed!
+
+    // Pointers and functions — "pass by reference" using pointers
+    int x = 5;
+    void increment(int *num);
+    increment(&x);
+    printf("x after increment: %d\n", x); // 6
+
+    // Pointer arithmetic and arrays (arrays and pointers are closely related)
+    int numbers[] = {10, 20, 30};
+    int *ptr = numbers; // Points to the first element (equivalent to &numbers[0])
+
+    printf("%d\n", *ptr);       // 10
+    printf("%d\n", *(ptr + 1)); // 20 — moves forward by one int's worth of memory
+    printf("%d\n", ptr[2]);      // 30 — pointer indexing works just like array indexing
+
+    // NULL pointers — represent "points to nothing"
+    int *emptyPtr = NULL;
+    if (emptyPtr == NULL) {
+        printf("Pointer is not initialized\n");
+    }
+
+    // Double pointers (a pointer to a pointer)
+    int value = 100;
+    int *p1 = &value;
+    int **p2 = &p1;
+    printf("%d\n", **p2); // 100 — dereference twice to reach the original value
+
+    return 0;
+}
+
+void increment(int *num) {
+    (*num)++; // Dereference, then increment the actual value
+}
+```
+
+**Key rule:** `&variable` gets an address; `*pointer` dereferences a pointer to get the value it points to.
+
+---
+
+## 11. Structs & Unions
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+// Defining a struct — groups related data together
+struct Person {
+    char name[50];
+    int age;
+    float height;
+};
+
+// Using typedef for a cleaner syntax (avoids writing "struct" every time)
+typedef struct {
+    double x;
+    double y;
+} Point;
+
+int main(void) {
+    // Creating and initializing a struct
+    struct Person person1 = {"Sophea", 25, 165.5f};
+
+    printf("%s is %d years old\n", person1.name, person1.age);
+
+    // Modifying struct fields
+    person1.age = 26;
+    strcpy(person1.name, "Sophea Chan");
+
+    // Using the typedef'd struct
+    Point origin = {0.0, 0.0};
+    Point p1 = {3.0, 4.0};
+    printf("p1: (%.1f, %.1f)\n", p1.x, p1.y);
+
+    // Structs and pointers — use -> to access fields through a pointer
+    struct Person *personPtr = &person1;
+    printf("%s\n", personPtr->name);   // Shorthand for (*personPtr).name
+    personPtr->age = 27;
+
+    // Array of structs
+    struct Person people[2] = {
+        {"Sophea", 25, 165.5f},
+        {"Dara", 30, 175.0f}
+    };
+    for (int i = 0; i < 2; i++) {
+        printf("%s: %d years\n", people[i].name, people[i].age);
+    }
+
+    // Nested structs
+    struct Address {
+        char city[30];
+        char country[30];
+    };
+
+    struct Employee {
+        char name[50];
+        struct Address address;
+    };
+
+    struct Employee emp = {"Dara", {"Phnom Penh", "Cambodia"}};
+    printf("%s lives in %s\n", emp.name, emp.address.city);
+
+    return 0;
+}
+
+// Union — like a struct, but all members SHARE the same memory (only one is valid at a time)
+union Data {
+    int i;
+    float f;
+    char str[20];
+};
+```
+
+---
+
+## 12. Dynamic Memory Allocation
+
+Unlike languages with garbage collection, C requires you to manually allocate and free heap memory.
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    // malloc — allocate raw memory (uninitialized)
+    int *numbers = (int *)malloc(5 * sizeof(int));
+
+    if (numbers == NULL) {
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
+
+    for (int i = 0; i < 5; i++) {
+        numbers[i] = i * 10;
+    }
+
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", numbers[i]);
+    }
+    printf("\n");
+
+    free(numbers); // ALWAYS free memory you've allocated — prevents memory leaks
+    numbers = NULL;  // Good practice: avoid a "dangling pointer" after freeing
+
+    // calloc — allocate memory AND initialize it to zero
+    int *zeroed = (int *)calloc(5, sizeof(int));
+    if (zeroed != NULL) {
+        printf("%d\n", zeroed[0]); // 0 — guaranteed zero-initialized
+        free(zeroed);
+    }
+
+    // realloc — resize a previously allocated block
+    int *resizable = (int *)malloc(3 * sizeof(int));
+    resizable[0] = 1;
+    resizable[1] = 2;
+    resizable[2] = 3;
+
+    int *bigger = (int *)realloc(resizable, 5 * sizeof(int));
+    if (bigger != NULL) {
+        resizable = bigger; // realloc may move the block, so reassign the pointer
+        resizable[3] = 4;
+        resizable[4] = 5;
+
+        for (int i = 0; i < 5; i++) {
+            printf("%d ", resizable[i]);
+        }
+        printf("\n");
+    }
+    free(resizable);
+
+    return 0;
+}
+```
+
+**The golden rules of memory management:**
+1. Every `malloc`/`calloc`/`realloc` must eventually be matched with exactly one `free`
+2. Never use memory after freeing it (a "use-after-free" bug)
+3. Never free the same memory twice (a "double free" bug)
+4. Always check if allocation returned `NULL` before using the pointer
+
+---
+
+## 13. File I/O
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    // --- Writing to a file ---
+    FILE *file = fopen("notes.txt", "w"); // "w" = write (overwrites existing content)
+    if (file == NULL) {
+        printf("Error opening file!\n");
+        return 1;
+    }
+    fprintf(file, "Hello, file world!\n");
+    fprintf(file, "Second line: %d\n", 42);
+    fclose(file); // Always close files when done
+
+    // --- Appending to a file ---
+    file = fopen("notes.txt", "a"); // "a" = append
+    if (file != NULL) {
+        fprintf(file, "Appended line.\n");
+        fclose(file);
+    }
+
+    // --- Reading a file line by line ---
+    file = fopen("notes.txt", "r"); // "r" = read
+    if (file != NULL) {
+        char line[100];
+        while (fgets(line, sizeof(line), file) != NULL) {
+            printf("%s", line);
+        }
+        fclose(file);
+    }
+
+    // --- Writing/reading binary data ---
+    int numbers[] = {1, 2, 3, 4, 5};
+    FILE *binFile = fopen("data.bin", "wb"); // "wb" = write binary
+    if (binFile != NULL) {
+        fwrite(numbers, sizeof(int), 5, binFile);
+        fclose(binFile);
+    }
+
+    int readNumbers[5];
+    binFile = fopen("data.bin", "rb"); // "rb" = read binary
+    if (binFile != NULL) {
+        fread(readNumbers, sizeof(int), 5, binFile);
+        fclose(binFile);
+
+        for (int i = 0; i < 5; i++) {
+            printf("%d ", readNumbers[i]);
         }
         printf("\n");
     }
@@ -560,622 +715,315 @@ int main(void) {
 
 ---
 
-## 12. String
+## 14. Preprocessor Directives
 
 ```c
 #include <stdio.h>
-#include <string.h>   // Library សម្រាប់ String functions
+
+// #define — creates constants or macros (text substitution before compilation)
+#define PI 3.14159
+#define MAX_SIZE 100
+#define SQUARE(x) ((x) * (x)) // Macro function — note the parentheses for safety!
+
+// Conditional compilation
+#define DEBUG_MODE 1
 
 int main(void) {
+    printf("PI = %f\n", PI);
+    printf("Square of 5: %d\n", SQUARE(5)); // Expands to ((5) * (5))
 
-    char name1[50] = "Sophea";
-    char name2[50] = "Dara";
-    char full[100];
+    #if DEBUG_MODE
+        printf("Debug mode is ON\n");
+    #else
+        printf("Debug mode is OFF\n");
+    #endif
 
-    /* strlen — ប្រវែង String */
-    printf("ប្រវែង name1 : %zu\n", strlen(name1));   // 6
-
-    /* strcpy — ចម្លង String */
-    char copy[50];
-    strcpy(copy, name1);
-    printf("Copy : %s\n", copy);
-
-    /* strcat — ភ្ជាប់ String */
-    strcpy(full, name1);
-    strcat(full, " & ");
-    strcat(full, name2);
-    printf("Full : %s\n", full);    // "Sophea & Dara"
-
-    /* strcmp — ប្រៀបធៀប String */
-    int cmp = strcmp(name1, name2);
-    if (cmp == 0)       printf("ដូចគ្នា\n");
-    else if (cmp < 0)   printf("name1 < name2\n");
-    else                printf("name1 > name2\n");
-
-    /* ======================================
-     * String ជា Array នៃ char
-     * ====================================== */
-    char word[] = "Hello";
-    printf("\nChar by char: ");
-    for (int i = 0; word[i] != '\0'; i++) {   // '\0' = End of String
-        printf("%c", word[i]);
-    }
-    printf("\n");
+    // #ifdef / #ifndef — check if something is defined
+    #ifdef MAX_SIZE
+        printf("MAX_SIZE is defined as %d\n", MAX_SIZE);
+    #endif
 
     return 0;
 }
 ```
 
+**Include guards** (prevent a header file from being included multiple times):
+
+```c
+// myheader.h
+#ifndef MYHEADER_H
+#define MYHEADER_H
+
+void greet(void);
+
+#endif // MYHEADER_H
+```
+
 ---
 
-## 13. Pointer
+## 15. Multi-File Programs & Header Files
 
-> **Pointer** គឺជា variable ដែលរក្សា **address** (អាស័យដ្ឋាន) នៃ variable មួយផ្សេងទៀត
+Large C programs are split across multiple `.c` and `.h` files.
+
+```c
+// mathutils.h — header file declares WHAT functions exist
+#ifndef MATHUTILS_H
+#define MATHUTILS_H
+
+int add(int a, int b);
+int subtract(int a, int b);
+
+#endif
+```
+
+```c
+// mathutils.c — source file defines HOW they work
+#include "mathutils.h"
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int subtract(int a, int b) {
+    return a - b;
+}
+```
+
+```c
+// main.c
+#include <stdio.h>
+#include "mathutils.h" // Local header — quotes, not angle brackets
+
+int main(void) {
+    printf("%d\n", add(5, 3));       // 8
+    printf("%d\n", subtract(5, 3));   // 2
+    return 0;
+}
+```
+
+```bash
+# Compiling multiple files together
+gcc main.c mathutils.c -o myprogram
+./myprogram
+```
+
+---
+
+## 16. Command-Line Arguments
+
+```c
+#include <stdio.h>
+
+// argc = argument count, argv = argument vector (array of strings)
+int main(int argc, char *argv[]) {
+    printf("Program name: %s\n", argv[0]);
+    printf("Number of arguments: %d\n", argc);
+
+    for (int i = 1; i < argc; i++) {
+        printf("Argument %d: %s\n", i, argv[i]);
+    }
+
+    return 0;
+}
+```
+
+```bash
+gcc args.c -o args
+./args hello world 123
+# Output:
+# Program name: ./args
+# Number of arguments: 4
+# Argument 1: hello
+# Argument 2: world
+# Argument 3: 123
+```
+
+---
+
+## 17. Common Pitfalls & Debugging
 
 ```c
 #include <stdio.h>
 
 int main(void) {
+    // ❌ Pitfall 1: Uninitialized variables contain garbage values
+    int x; // Don't do this
+    // printf("%d\n", x); // Undefined value!
+    int y = 0; // ✅ Always initialize
 
-    int num  = 42;
-    int *ptr = &num;       // ptr ទុក address របស់ num
+    // ❌ Pitfall 2: Off-by-one errors in loops
+    int arr[5] = {1, 2, 3, 4, 5};
+    // for (int i = 0; i <= 5; i++) { arr[i]... } // Bug! Goes out of bounds at i=5
+    for (int i = 0; i < 5; i++) { /* ✅ Correct: use < not <= */ }
 
-    printf("=== Pointer Basics ===\n");
-    printf("num       = %d\n",   num);      // តម្លៃ: 42
-    printf("&num      = %p\n",   &num);     // address
-    printf("ptr       = %p\n",   ptr);      // address (ដូច &num)
-    printf("*ptr      = %d\n",   *ptr);     // Dereference: 42
+    // ❌ Pitfall 3: Integer division when you meant float division
+    int a = 5, b = 2;
+    printf("%d\n", a / b);           // 2, not 2.5!
+    printf("%f\n", (float)a / b);     // ✅ Cast to get 2.5
 
-    /* ផ្លាស់ប្ដូរ num តាមរយៈ pointer */
-    *ptr = 100;
-    printf("\nAfter *ptr = 100:\n");
-    printf("num = %d\n", num);              // 100
+    // ❌ Pitfall 4: Comparing floats with ==
+    float f1 = 0.1f + 0.2f;
+    // if (f1 == 0.3f) { ... } // May be FALSE due to floating-point imprecision!
+    if (f1 > 0.29f && f1 < 0.31f) { /* ✅ Use a tolerance range instead */ }
 
-    /* ======================================
-     * Pointer & Arrays
-     * ====================================== */
-    printf("\n=== Pointer + Array ===\n");
-    int arr[] = {10, 20, 30, 40, 50};
-    int *p    = arr;                        // arr = &arr[0]
+    // ❌ Pitfall 5: Memory leaks (forgetting to free)
+    // int *p = malloc(sizeof(int)); // Never freed = leak
 
-    for (int i = 0; i < 5; i++) {
-        printf("arr[%d] = %d  (via pointer: %d)\n",
-               i, arr[i], *(p + i));
-    }
+    // ❌ Pitfall 6: Dangling pointers (using memory after freeing it)
+    // free(p); *p = 5; // Undefined behavior!
 
-    /* ======================================
-     * Pointer ក្នុង Function (Pass by Reference)
-     * ====================================== */
     return 0;
-}
-
-/* Swap ដោយប្រើ Pointer */
-void swap(int *a, int *b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
 }
 ```
 
+**Debugging tools:**
+
+```bash
+# Compile with debug symbols and warnings enabled
+gcc -g -Wall -Wextra program.c -o program
+
+# Use gdb (GNU Debugger) to step through code
+gdb ./program
+
+# Use Valgrind to detect memory leaks and invalid memory access (Linux)
+valgrind --leak-check=full ./program
+```
+
+**`-Wall -Wextra`** enables extra compiler warnings — always compile with these flags to catch bugs early.
+
 ---
 
-## 14. Structure និង Union
+## 18. Best Practices
+
+- ✅ Always check the return value of `malloc()` (and similar) for `NULL` before use
+- ✅ Match every `malloc`/`calloc`/`realloc` with exactly one `free`
+- ✅ Always initialize variables — never rely on their default garbage value
+- ✅ Use `const` for parameters/variables that shouldn't be modified
+- ✅ Compile with `-Wall -Wextra` and fix every warning
+- ✅ Prefer `fgets()` over `gets()`/`scanf("%s", ...)` for reading strings safely
+- ✅ Always check array bounds manually — C does not do this for you
+- ✅ Use header guards (`#ifndef`/`#define`/`#endif`) in every `.h` file
+- ✅ Keep functions small and focused on a single task
+- ✅ Use tools like Valgrind or AddressSanitizer to catch memory bugs
+
+---
+
+## 19. Full Example Project
+
+A simple **Student Grade Manager** combining structs, dynamic memory, and file I/O:
 
 ```c
-#include <stdio.h>
-#include <string.h>
-
-/* =======================================
- * struct — ក្រុម Data Types ផ្សេងៗគ្នា
- * ======================================= */
-typedef struct {
-    char  name[50];
-    int   age;
-    float gpa;
-} Student;
-
-/* Nested struct */
-typedef struct {
-    int day;
-    int month;
-    int year;
-} Date;
+// student.h
+#ifndef STUDENT_H
+#define STUDENT_H
 
 typedef struct {
     char name[50];
-    Date birthday;
-    float salary;
-} Employee;
-
-/* ======================================= */
-
-void print_student(const Student *s) {
-    printf("ឈ្មោះ  : %s\n",   s->name);
-    printf("អាយុ   : %d\n",   s->age);
-    printf("GPA    : %.2f\n", s->gpa);
-}
-
-int main(void) {
-
-    /* --- ប្រើ struct --- */
-    Student s1;
-    strcpy(s1.name, "Sreyleak");
-    s1.age = 20;
-    s1.gpa = 3.85f;
-
-    Student s2 = {"Visal", 22, 3.60f};   // Initialize ផ្ទាល់
-
-    printf("=== Student 1 ===\n");
-    print_student(&s1);
-
-    printf("\n=== Student 2 ===\n");
-    print_student(&s2);
-
-    /* --- Array of Structs --- */
-    printf("\n=== Class List ===\n");
-    Student class[3] = {
-        {"Arun",    21, 3.75f},
-        {"Bopha",   20, 3.90f},
-        {"Chamroen",22, 3.55f}
-    };
-
-    for (int i = 0; i < 3; i++) {
-        printf("%d. %-12s GPA: %.2f\n",
-               i + 1, class[i].name, class[i].gpa);
-    }
-
-    return 0;
-}
-```
-
----
-
-## 15. File I/O
-
-```c
-#include <stdio.h>
-#include <stdlib.h>  // exit()
-
-/* ======================================
- * សរសេរ (Write) ទៅ File
- * ====================================== */
-void write_file(void) {
-    FILE *fp = fopen("students.txt", "w");   // "w" = write mode
-    if (fp == NULL) {
-        perror("Error opening file");
-        exit(EXIT_FAILURE);
-    }
-
-    fprintf(fp, "Sophea  20  3.85\n");
-    fprintf(fp, "Dara    22  3.70\n");
-    fprintf(fp, "Sreyleak 21 3.90\n");
-
-    fclose(fp);
-    printf("✅ សរសេរ File ជោគជ័យ!\n");
-}
-
-/* ======================================
- * អាន (Read) ពី File
- * ====================================== */
-void read_file(void) {
-    FILE *fp = fopen("students.txt", "r");   // "r" = read mode
-    if (fp == NULL) {
-        perror("Error opening file");
-        exit(EXIT_FAILURE);
-    }
-
-    char   name[50];
-    int    age;
-    double gpa;
-
-    printf("\n=== File Content ===\n");
-    while (fscanf(fp, "%s %d %lf", name, &age, &gpa) == 3) {
-        printf("ឈ្មោះ: %-10s | អាយុ: %d | GPA: %.2f\n",
-               name, age, gpa);
-    }
-
-    fclose(fp);
-}
-
-int main(void) {
-    write_file();
-    read_file();
-    return 0;
-}
-```
-
-### File Modes
-| Mode | មានន័យ |
-|---|---|
-| `"r"` | Read — file ត្រូវតែមានស្រាប់ |
-| `"w"` | Write — បង្កើត/ជម្នះ file ចាស់ |
-| `"a"` | Append — បន្ថែមទៅចុង file |
-| `"r+"` | Read + Write |
-| `"rb"` | Read binary |
-| `"wb"` | Write binary |
-
----
-
-## 16. Dynamic Memory Allocation
-
-```c
-#include <stdio.h>
-#include <stdlib.h>  // malloc, calloc, realloc, free
-
-int main(void) {
-
-    int n;
-    printf("បញ្ចូលចំនួន elements: ");
-    scanf("%d", &n);
-
-    /* ======================================
-     * malloc — Allocate memory (uninitialized)
-     * ====================================== */
-    int *arr = (int *)malloc(n * sizeof(int));
-    if (arr == NULL) {
-        fprintf(stderr, "❌ Memory allocation failed!\n");
-        return EXIT_FAILURE;
-    }
-
-    /* បំពេញ values */
-    for (int i = 0; i < n; i++) {
-        arr[i] = (i + 1) * 10;
-    }
-
-    printf("malloc array: ");
-    for (int i = 0; i < n; i++) {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
-
-    /* ======================================
-     * realloc — ពង្រីក/បង្រួម Memory
-     * ====================================== */
-    int new_size = n + 3;
-    int *tmp = (int *)realloc(arr, new_size * sizeof(int));
-    if (tmp == NULL) {
-        free(arr);   // ត្រូវ free arr ដ៏ "ដើម
-        return EXIT_FAILURE;
-    }
-    arr = tmp;
-
-    /* ======================================
-     * calloc — Allocate + Initialize to 0
-     * ====================================== */
-    double *matrix = (double *)calloc(4 * 4, sizeof(double));
-    if (matrix != NULL) {
-        printf("calloc 4x4 matrix (all zeros initialized)\n");
-        free(matrix);
-    }
-
-    /* ======================================
-     * IMPORTANT: free() ដើម្បីជៀសវាង Memory Leak
-     * ====================================== */
-    free(arr);    // ❗ ត្រូវ free រាល់ malloc/calloc/realloc
-
-    return 0;
-}
-```
-
----
-
-## 17. Preprocessor
-
-```c
-#include <stdio.h>
-
-/* ======================================
- * #define Macros
- * ====================================== */
-#define MAX(a, b)       ((a) > (b) ? (a) : (b))
-#define MIN(a, b)       ((a) < (b) ? (a) : (b))
-#define SQUARE(x)       ((x) * (x))
-#define ABS(x)          ((x) < 0 ? -(x) : (x))
-
-/* ======================================
- * Conditional Compilation
- * ====================================== */
-#define DEBUG_MODE   1
-
-#if DEBUG_MODE
-    #define LOG(msg)  printf("[DEBUG] %s\n", (msg))
-#else
-    #define LOG(msg)  /* nothing */
-#endif
-
-int main(void) {
-
-    printf("MAX(10, 20)   = %d\n", MAX(10, 20));
-    printf("MIN(10, 20)   = %d\n", MIN(10, 20));
-    printf("SQUARE(7)     = %d\n", SQUARE(7));
-    printf("ABS(-42)      = %d\n", ABS(-42));
-
-    LOG("Program started");
-
-    return 0;
-}
-```
-
----
-
-## 18. Error Handling
-
-```c
-#include <stdio.h>
-#include <stdlib.h>
-#include <errno.h>   // errno
-#include <string.h>  // strerror
-
-int divide(int a, int b, int *result) {
-    if (b == 0) {
-        return -1;   // Error code
-    }
-    *result = a / b;
-    return 0;        // Success
-}
-
-int main(void) {
-
-    int result;
-
-    /* --- Custom Error Code --- */
-    if (divide(10, 0, &result) != 0) {
-        fprintf(stderr, "❌ Error: Cannot divide by zero!\n");
-    } else {
-        printf("10 / 2 = %d\n", result);
-    }
-
-    if (divide(10, 2, &result) == 0) {
-        printf("10 / 2 = %d\n", result);
-    }
-
-    /* --- errno (System Error) --- */
-    FILE *fp = fopen("nonexistent_file.txt", "r");
-    if (fp == NULL) {
-        printf("errno = %d\n",    errno);
-        printf("Error : %s\n",    strerror(errno));
-        perror("fopen failed");   // Print error message
-    }
-
-    return 0;
-}
-```
-
----
-
-## 19. Advanced Topics
-
-### Function Pointers
-```c
-#include <stdio.h>
-
-int  add(int a, int b)  { return a + b; }
-int  sub(int a, int b)  { return a - b; }
-int  mul(int a, int b)  { return a * b; }
-
-/* Function pointer type */
-typedef int (*Operation)(int, int);
-
-void apply(int a, int b, Operation op, const char *name) {
-    printf("%s(%d, %d) = %d\n", name, a, b, op(a, b));
-}
-
-int main(void) {
-    apply(10, 5, add, "add");
-    apply(10, 5, sub, "sub");
-    apply(10, 5, mul, "mul");
-
-    /* Array of function pointers */
-    Operation ops[]       = {add, sub, mul};
-    const char *names[]   = {"add", "sub", "mul"};
-
-    for (int i = 0; i < 3; i++) {
-        apply(8, 4, ops[i], names[i]);
-    }
-
-    return 0;
-}
-```
-
-### Linked List
-```c
-#include <stdio.h>
-#include <stdlib.h>
-
-/* =======================================
- * Node Structure
- * ======================================= */
-typedef struct Node {
-    int          data;
-    struct Node *next;
-} Node;
-
-/* =======================================
- * Operations
- * ======================================= */
-
-/* បន្ថែម node នៅខាងចុង */
-Node *push_back(Node *head, int value) {
-    Node *new_node = (Node *)malloc(sizeof(Node));
-    if (new_node == NULL) return head;
-
-    new_node->data = value;
-    new_node->next = NULL;
-
-    if (head == NULL) return new_node;
-
-    Node *cur = head;
-    while (cur->next != NULL) cur = cur->next;
-    cur->next = new_node;
-
-    return head;
-}
-
-/* Print Linked List */
-void print_list(const Node *head) {
-    printf("List: ");
-    for (const Node *cur = head; cur != NULL; cur = cur->next) {
-        printf("%d", cur->data);
-        if (cur->next) printf(" -> ");
-    }
-    printf(" -> NULL\n");
-}
-
-/* Free memory */
-void free_list(Node *head) {
-    while (head != NULL) {
-        Node *tmp = head;
-        head = head->next;
-        free(tmp);
-    }
-}
-
-int main(void) {
-    Node *list = NULL;
-
-    for (int i = 1; i <= 5; i++) {
-        list = push_back(list, i * 10);
-    }
-
-    print_list(list);   // List: 10 -> 20 -> 30 -> 40 -> 50 -> NULL
-    free_list(list);
-
-    return 0;
-}
-```
-
----
-
-## 20. គន្លឹះសរសេរ Clean Code
-
-### ✅ បទដ្ឋានល្អ
-```c
-/* ❌ BAD — ពិបាកអាន */
-int f(int x,int y){int z=x+y;return z;}
-
-/* ✅ GOOD — ច្បាស់លាស់ */
-/**
- * @brief  គណនាផលបូកនៃ a និង b
- * @param  a  ចំនួនទីមួយ
- * @param  b  ចំនួនទីពីរ
- * @return ផលបូក a + b
- */
-int calculate_sum(int a, int b) {
-    return a + b;
-}
-```
-
-### 📐 ច្បាប់ Clean Code ក្នុង C
-
-| ក្បួន | ការអនុវត្ត |
-|---|---|
-| **ឈ្មោះ Variable** | ប្រើ `snake_case`: `total_score`, `student_name` |
-| **ឈ្មោះ Function** | ប្រើ Verb: `calculate_area()`, `read_file()` |
-| **ឈ្មោះ Constants** | ប្រើ UPPERCASE: `MAX_SIZE`, `PI` |
-| **Comment** | ពន្យល់ *ហេតុអ្វី* មិនមែន *ធ្វើអ្វី* |
-| **Function** | Function 1 ទំព័រ — 20-30 lines max |
-| **Magic Numbers** | ជៀសវាង `if (n > 100)` → ប្រើ `#define MAX_LIMIT 100` |
-| **Error Check** | Check return value រាល់ malloc, fopen |
-| **Memory** | Free every malloc — ប្រើ Valgrind ពិនិត្យ |
-
-### 🧪 Good Code Example
-```c
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-#define MAX_STUDENTS  100
-#define NAME_LEN       50
-
-typedef struct {
-    char  name[NAME_LEN];
-    float gpa;
+    float grade;
 } Student;
 
-/* ចម្រោះ Students ដែលមាន GPA >= min_gpa */
-int filter_students(
-    const Student *src,
-    int            src_count,
-    Student       *dst,
-    float          min_gpa
-) {
-    int count = 0;
-    for (int i = 0; i < src_count; i++) {
-        if (src[i].gpa >= min_gpa) {
-            dst[count++] = src[i];
-        }
+Student *createStudents(int count);
+void printStudents(Student *students, int count);
+float calculateAverage(Student *students, int count);
+void freeStudents(Student *students);
+
+#endif
+```
+
+```c
+// student.c
+#include <stdio.h>
+#include <stdlib.h>
+#include "student.h"
+
+Student *createStudents(int count) {
+    Student *students = (Student *)malloc(count * sizeof(Student));
+    if (students == NULL) {
+        printf("Memory allocation failed!\n");
+        exit(1);
     }
-    return count;
+    return students;
 }
 
+void printStudents(Student *students, int count) {
+    for (int i = 0; i < count; i++) {
+        printf("%s: %.1f\n", students[i].name, students[i].grade);
+    }
+}
+
+float calculateAverage(Student *students, int count) {
+    float total = 0;
+    for (int i = 0; i < count; i++) {
+        total += students[i].grade;
+    }
+    return count > 0 ? total / count : 0;
+}
+
+void freeStudents(Student *students) {
+    free(students);
+}
+```
+
+```c
+// main.c
+#include <stdio.h>
+#include <string.h>
+#include "student.h"
+
 int main(void) {
-    Student students[] = {
-        {"Sophea",   3.85f},
-        {"Dara",     2.90f},
-        {"Sreyleak", 3.70f},
-        {"Visal",    3.20f},
-        {"Bopha",    3.95f},
-    };
-    int total = 5;
+    int studentCount = 3;
+    Student *students = createStudents(studentCount);
 
-    Student honor[MAX_STUDENTS];
-    int honor_count = filter_students(students, total, honor, 3.50f);
+    strcpy(students[0].name, "Sophea");
+    students[0].grade = 92.5f;
 
-    printf("=== Honor Students (GPA >= 3.50) ===\n");
-    for (int i = 0; i < honor_count; i++) {
-        printf("%-12s : %.2f\n", honor[i].name, honor[i].gpa);
+    strcpy(students[1].name, "Dara");
+    students[1].grade = 85.0f;
+
+    strcpy(students[2].name, "Bopha");
+    students[2].grade = 78.3f;
+
+    printf("--- Student Grades ---\n");
+    printStudents(students, studentCount);
+
+    float average = calculateAverage(students, studentCount);
+    printf("\nClass average: %.2f\n", average);
+
+    // Save the report to a file
+    FILE *report = fopen("grades_report.txt", "w");
+    if (report != NULL) {
+        fprintf(report, "--- Student Grades ---\n");
+        for (int i = 0; i < studentCount; i++) {
+            fprintf(report, "%s: %.1f\n", students[i].name, students[i].grade);
+        }
+        fprintf(report, "\nClass average: %.2f\n", average);
+        fclose(report);
+        printf("\nReport saved to grades_report.txt\n");
     }
 
+    freeStudents(students); // Clean up allocated memory
     return 0;
 }
 ```
 
----
+```bash
+# Compile all files together
+gcc main.c student.c -o grade_manager -Wall -Wextra
 
-## 📚 Resources ផ្សេងៗ
-
-| ប្រភព | Link |
-|---|---|
-| C Reference | https://en.cppreference.com/w/c |
-| The C Programming Language (Book) | K&R Classic Book |
-| CS50 Harvard | https://cs50.harvard.edu |
-| GCC Docs | https://gcc.gnu.org/onlinedocs/ |
-| Valgrind (Memory Checker) | https://valgrind.org |
-
----
-
-## 🗺️ ផ្លូវវិភាគ (Learning Roadmap)
-
-```
-ដំណាក់កាលទី 1 (Beginner)
-├── Variables & Data Types
-├── Input / Output
-├── Operators
-├── Conditionals
-└── Loops
-
-ដំណាក់កាលទី 2 (Intermediate)
-├── Functions
-├── Arrays & Strings
-├── Pointers (Basic)
-└── Structs
-
-ដំណាក់កាលទី 3 (Advanced)
-├── Pointers (Advanced)
-├── Dynamic Memory
-├── File I/O
-├── Data Structures (List, Stack, Queue)
-└── Algorithms (Sort, Search)
-
-ដំណាក់កាលទី 4 (Expert)
-├── Bitwise Operations
-├── Multi-file Projects
-├── Makefiles
-└── System Programming (Linux, OS, Sockets)
+# Run it
+./grade_manager
 ```
 
 ---
 
-> ✍️ **ត្រូវចាំ:** "Programs must be written for people to read, and only incidentally for machines to execute." — Harold Abelson
+## 20. Resources
 
+- C reference: `https://en.cppreference.com/w/c`
+- GNU C Library manual: `https://www.gnu.org/software/libc/manual/`
+- Learn C (interactive): `https://www.learn-c.org/`
 
+---
+
+<p align="center">
+  Made with ❤️ for developers learning C.
+</p>
